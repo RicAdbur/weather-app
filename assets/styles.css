@@ -1,0 +1,18 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #212529;
+}
+
+header {
+    background-color: #3D648A;
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+    #forecast-area .d-flex {
+        display: block !important;
+    }
+}
