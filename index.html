@@ -21,14 +21,17 @@
         <div class="container">
             <div class="row">
                 <section id="search-area" class="col-md-4 col-sm-12">
-                    <form>
+                    <form id="search-form">
                         <label for="search-bar" class="form-label text-light">Get your 5-day forecast!</label>
                         <div class="input-group mb-3">
                             <input id="search-bar" type="text" class="form-control" placeholder="City Name"
                                 aria-label="City Search" aria-describedby="search-button">
-                            <button class="btn btn-outline-primary" type="button" id="search-button">Search</button>
+                            <button class="btn btn-outline-primary" type="submit" id="search-button">Search</button>
                         </div>
                     </form>
+                    <div id="search-history">
+                        <h3 class="text-light mt-5">Search History</h3>
+                    </div>
                 </section>
 
                 <section id="weather-display-area" class="col-md-8 col-sm-12">
