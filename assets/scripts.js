@@ -61,15 +61,18 @@ searchFormEl.addEventListener("submit", function (e) {
     // call for current weather using city name
     var inputValue = searchBar.value
     getCurrentWeather(inputValue)
+    // call for forecasts using city name
     getForecast(inputValue)
+    // save cities searched for in local storage
     saveSearchHistory(inputValue)
-    makeSearchHistory()
+    // render cities saved in local storage onto DOM
+    renderSearchHistory()
 })
 
-function makeSearchHistory() {
+function renderSearchHistory() {
     searchHistoryEl.innerHTML = ""
     var localStorageItems = JSON.parse(localStorage.getItem("searchHistory"))
-    // console.log(localStorageItems)
+    // loop that makes buttons for previous searches
     for (var i = 0; i < localStorageItems.length - 1; i++) {
         var cityButton = document.createElement("button");
         cityButton.classList.add("btn", "btn-outline-primary", "mb-2")
@@ -79,25 +82,32 @@ function makeSearchHistory() {
     }
 }
 
+renderSearchHistory()
+
+// click listener for search history buttons
 searchHistoryEl.addEventListener("click", function (e) {
+    // prevent duplicate buttons from being made
     if (e.target.matches(".btn")) {
         getCurrentWeather(e.target.innerText)
     }
 })
 
+// save previous searches into localStorage
 function saveSearchHistory() {
+    // parse items from localStorage or create empty array to store them
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || []
     var inputValue = searchBar.value
+    // if searchHistory array doesn't include the text typed into the search bar
     if (!searchHistory.includes(inputValue)) {
+        // push text from search bar into searchHistory array
         searchHistory.push(inputValue)
+        // add items into localStorage using "searchHistory" as the key and stringified searchHistory array as the value
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
     }
 }
 
-makeSearchHistory()
-
-// TODO [ ] Get icons from API and add them to cards
+// TODO [X] Get icons from API and add them to cards
 // TODO [ ] insert forecast data to forecast cards (loop?)
-// TODO [ ] Save previous searches in local storage
+// TODO [X] Save previous searches in local storage
 // TODO [X] List previous searches below search bar
-// TODO [ ] Make search history buttons perform searches for listed city
+// TODO [X] Make search history buttons perform searches for listed city
