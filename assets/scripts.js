@@ -58,9 +58,9 @@ function getForecast(cityName) {
 
 // add 5-day forecast data into DOM elements
 function displayForecast(forecastData) {
-    // TODO [ ] insert forecast data to forecast cards (loop?)
+    
     var forecastDataArray = forecastData.list
-    // array that will hold only the data selected by the following loop
+    // empty array that will hold only the data selected by the following loop
     var trackedWeatherDataObjects = []
     // loop that selects only the data from the next 5 days at noon
     for (let i = 0; i < forecastDataArray.length; i++) {
@@ -73,8 +73,13 @@ function displayForecast(forecastData) {
     // add data into DOM elements
     for (let i = 0; i < trackedWeatherDataObjects.length; i++) {
         var card = forecastCards[i]
+        var forecastDate = trackedWeatherDataObjects[i].dt_txt.split(" ")[0]
         card.querySelector(".temp").innerText = trackedWeatherDataObjects[i].main.temp
-        console.log(card.querySelector(".temp"))
+        card.querySelector(".humidity").innerText = trackedWeatherDataObjects[i].main.humidity
+        card.querySelector(".wind").innerText = trackedWeatherDataObjects[i].wind.speed
+        card.querySelector(".card-title").innerText = forecastDate
+        card.querySelector("img").setAttribute("src", "https://openweathermap.org/img/wn/"+trackedWeatherDataObjects[i].weather[0].icon+"@2x.png")
+        console.log(trackedWeatherDataObjects[i].weather[0].icon)
     }
     console.log(trackedWeatherDataObjects)
 }
